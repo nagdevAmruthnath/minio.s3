@@ -13,7 +13,7 @@
 #' @return Something...
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html}{API Documentation}
 #' @export
-copy_object <- function(from_object, to_object = from_object, from_bucket, to_bucket, headers = list(), ...) {
+copy_object <- function(from_object, to_object = from_object, from_bucket, to_bucket, headers = list(), use_https, ...) {
     from_bucket <- get_bucketname(from_bucket)
     to_bucket <- get_bucketname(to_bucket)
     from_object <- get_objectkey(from_object)
@@ -23,7 +23,20 @@ copy_object <- function(from_object, to_object = from_object, from_bucket, to_bu
                 path = paste0("/", to_object),
                 headers = c(headers, 
                             `x-amz-copy-source` = paste0("/",from_bucket,"/",from_object)), 
-                ...)
+                request_body = "",
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = TRUE, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = use_https)
     return(r)
 }
 

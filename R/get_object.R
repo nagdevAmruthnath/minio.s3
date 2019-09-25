@@ -45,8 +45,7 @@
 get_object <- 
 function(object, 
          bucket, 
-         headers = list(), 
-         parse_response = FALSE, 
+         use_https,
          ...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
@@ -55,9 +54,21 @@ function(object,
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
                 path = paste0("/", object),
-                headers = headers,
-                parse_response = parse_response,
-                ...)
+                headers = list(), 
+                request_body = "",
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = TRUE, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = use_https)
     cont <- httr::content(r, as = "raw")
     return(cont)
 }
@@ -69,8 +80,8 @@ save_object <-
 function(object, 
          bucket, 
          file = basename(object),
-         headers = list(),
          overwrite = TRUE,
+         use_https,
          ...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
@@ -87,15 +98,28 @@ function(object,
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
                 path = paste0("/", object),
-                headers = headers,
                 write_disk = httr::write_disk(path = file, overwrite = overwrite),
-                ...)
+                headers = list(), 
+                request_body = "",
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = TRUE, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = use_https)
     return(file)
 }
 
 #' @rdname getobject
 #' @export
-head_object <- function(object, bucket, ...) {
+head_object <- function(object, bucket, use_https, ...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
     } 
@@ -103,7 +127,21 @@ head_object <- function(object, bucket, ...) {
     r <- s3HTTP(verb = "HEAD", 
                 bucket = bucket,
                 path = paste0("/", object),
-                ...)
+                headers = list(), 
+                request_body = "",
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = TRUE, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = use_https)
     structure(r, class = "HEAD")
 }
 
@@ -117,7 +155,7 @@ head_object <- function(object, bucket, ...) {
 #' @return Something.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGETtorrent.html}{API Documentation}
 #' @export
-get_torrent <- function(object, bucket, ...) {
+get_torrent <- function(object, bucket, use_https,...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
     } 
@@ -126,6 +164,20 @@ get_torrent <- function(object, bucket, ...) {
                 bucket = bucket,
                 path = paste0("/", object),
                 query = list(torrent =""),
-                ...)
+                headers = list(), 
+                request_body = "",
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = TRUE, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = use_https)
     return(content(r, "raw"))
 }

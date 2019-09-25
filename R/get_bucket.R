@@ -41,7 +41,25 @@ get_bucket <- function(bucket,
     } else {
         query <- list(prefix = prefix, delimiter = delimiter, "max-keys" = as.integer(pmin(1000, max)), marker = marker)
     }
-    r <- s3HTTP(verb = "GET", bucket = bucket, query = query, parse_response = parse_response, ...)
+    r <- s3HTTP(verb = "GET",
+                bucket = bucket, 
+                path = "", 
+                query = NULL,
+                headers = list(), 
+                request_body = "",
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = parse_response, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = FALSE) 
 
     if (isTRUE(parse_response)) {
         while (
