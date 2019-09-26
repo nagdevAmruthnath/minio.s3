@@ -6,7 +6,7 @@
 \title{Copy Objects}
 \usage{
 copy_object(from_object, to_object = from_object, from_bucket, to_bucket,
-  headers = list(), ...)
+  headers = list(), use_https, ...)
 
 copy_bucket(from_bucket, to_bucket, ...)
 }
@@ -20,6 +20,8 @@ copy_bucket(from_bucket, to_bucket, ...)
 \item{to_bucket}{A character string containing the name of the bucket you want to copy into.}
 
 \item{headers}{List of request headers for the REST call.}
+
+\item{use_https}{True if connection is HTTPS and False if connection is HTTP}
 
 \item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
 }

@@ -1,7 +1,7 @@
 #' @title Bucket location
 #' @description Get the AWS region location of bucket.
-#'
 #' @template bucket
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #'
 #' @return A character string containing the region, if one has been set.

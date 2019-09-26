@@ -8,6 +8,7 @@
 #' @param from_object A character string containing the name the object you want to copy.
 #' @param to_object A character string containing the name the object should have in the new bucket.
 #' @param headers List of request headers for the REST call.   
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #'
 #' @return Something...

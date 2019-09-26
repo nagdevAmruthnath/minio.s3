@@ -2,6 +2,7 @@
 #' @description Deletes an S3 bucket.
 #'
 #' @template bucket
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #'
 #' @return \code{TRUE} if successful, \code{FALSE} otherwise. 

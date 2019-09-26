@@ -6,20 +6,24 @@
 \alias{delete_bucket_policy}
 \title{Bucket policies}
 \usage{
-get_bucket_policy(bucket, parse_response = TRUE, ...)
+get_bucket_policy(bucket, parse_response = TRUE, use_https = FALSE, ...)
 
-put_bucket_policy(bucket, policy, ...)
+put_bucket_policy(bucket, policy, use_https = FALSE, ...)
 
-delete_bucket_policy(bucket, ...)
+delete_bucket_policy(bucket, use_https = FALSE, ...)
 }
 \arguments{
 \item{bucket}{Character string with the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
 \item{parse_response}{A logical indicating whether to return the response as is, or parse and return as a list. Default is \code{FALSE}.}
 
-\item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
 
 \item{policy}{A character string containing a bucket policy.}
+
+
+\item{use_https}{True if connection is HTTPS and False if connection is HTTP}
+
+\item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
 }
 \value{
 For \code{get_policy}: A character string containing the JSON representation of the policy, if one has been set. For \code{delete_policy} and \code{put_policy}: \code{TRUE} if successful, \code{FALSE} otherwise.

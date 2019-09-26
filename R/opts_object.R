@@ -1,5 +1,5 @@
 # OPTIONS
-opts_object <- function(object, bucket, ...) {
+opts_object <- function(object, bucket, use_https, ...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
     } 

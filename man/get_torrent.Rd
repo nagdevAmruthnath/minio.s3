@@ -4,12 +4,14 @@
 \alias{get_torrent}
 \title{Get object torrent}
 \usage{
-get_torrent(object, bucket, ...)
+get_torrent(object, bucket, use_https, ...)
 }
 \arguments{
 \item{object}{Character string with the object key, or an object of class \dQuote{s3_object}. In most cases, if \code{object} is specified as the latter, \code{bucket} can be omitted because the bucket name will be extracted from \dQuote{Bucket} slot in \code{object}.}
 
 \item{bucket}{Character string with the name of the bucket, or an object of class \dQuote{s3_bucket}.}
+
+\item{use_https}{True if connection is HTTPS and False if connection is HTTP}
 
 \item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
 }

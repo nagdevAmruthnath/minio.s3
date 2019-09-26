@@ -6,8 +6,9 @@
 \title{Put object}
 \usage{
 put_object(file, object, bucket, multipart = FALSE, acl = c("private",
-  "public-read", "public-read-write", "aws-exec-read", "authenticated-read",
-  "bucket-owner-read", "bucket-owner-full-control"), headers = list(), ...)
+  "public-read", "public-read-write", "aws-exec-read",
+  "authenticated-read", "bucket-owner-read", "bucket-owner-full-control"),
+  headers = list(), ...)
 
 put_folder(folder, bucket, ...)
 }

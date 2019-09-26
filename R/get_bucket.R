@@ -7,6 +7,7 @@
 #' @param max Integer indicating the maximum number of keys to return. The function will recursively access the bucket in case \code{max > 1000}. Use \code{max = Inf} to retrieve all objects.
 #' @param marker Character string that pecifies the key to start with when listing objects in a bucket. Amazon S3 returns object keys in alphabetical order,  starting with key after the marker in order.
 #' @param parse_response logical, should we attempt to parse the response?
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #' @details From the AWS doc: \dQuote{This implementation of the GET operation returns some or all (up to 1000) of the objects in a bucket. You can use the request parameters as selection criteria to return a subset of the objects in a bucket.} The \code{max} and \code{marker} arguments can be used to retrieve additional pages of results. Values from a call are store as attributes
 #' @return \code{get_bucket} returns a list of objects in the bucket (with class \dQuote{s3_bucket}), while \code{get_bucket_df} returns a data frame (the only difference is the application of the \code{as.data.frame()} method to the list of bucket contents. If \code{max} is greater than 1000, multiple API requests are executed and the attributes attached to the response object reflect only the final request.
@@ -34,6 +35,7 @@ get_bucket <- function(bucket,
                        max = NULL,
                        marker = NULL,
                        parse_response = TRUE,
+                       use_https=FALSE,
                        ...) {
 
     if (is.null(max)) {
@@ -117,6 +119,7 @@ function(bucket,
          delimiter = NULL,
          max = NULL,
          marker = NULL,
+         use_https=FALSE,
          ...) {
 
     r <- get_bucket(bucket = bucket, prefix = prefix, delimiter = delimiter,

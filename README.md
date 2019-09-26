@@ -1,5 +1,8 @@
 # AWS S3 Client Package
 
+#### Package Update
+**The code has been updated to use external S3 storages like minio as non relational database. Set the environment as shown in below documentation to access local S3 storage like minio. **
+
 **aws.s3** is a simple client package for the Amazon Web Services (AWS) Simple Storage Service (S3) REST API. While [other packages](https://github.com/ropensci/webservices#amazon) currently connect R to S3, they do so incompletely (mapping only some of the API endpoints to R) and most implementations rely on the AWS command-line tools, which users may not have installed on their system.
 
 To use the package, you will need an AWS account and to enter your credentials into R. Your keypair can be generated on the [IAM Management Console](https://aws.amazon.com/) under the heading *Access Keys*. Note that you only have access to your secret key once. After it is generated, you need to save it in a secure location. New keypairs can be generated at any time if yours has been lost, stolen, or forgotten. The [**aws.iam** package](https://github.com/cloudyr/aws.iam) profiles tools for working with IAM, including creating roles, users, groups, and credentials programmatically; it is not needed to *use* IAM credentials.
@@ -13,7 +16,8 @@ By default, all **cloudyr** packages for AWS services allow the use of credentia
     Sys.setenv("AWS_ACCESS_KEY_ID" = "mykey",
                "AWS_SECRET_ACCESS_KEY" = "mysecretkey",
                "AWS_DEFAULT_REGION" = "us-east-1",
-               "AWS_SESSION_TOKEN" = "mytoken")
+               "AWS_SESSION_TOKEN" = "mytoken",         # Optional
+               "AWS_S3_ENDPOINT" = "localhost:9000")    # change it to your specific IP
     ```
  3. If R is running an EC2 instance, the role profile credentials provided by [**aws.ec2metadata**](https://cran.r-project.org/package=aws.ec2metadata).
  4. Profiles saved in a `/.aws/credentials` "dot file" in the current working directory. The `"default" profile is assumed if none is specified.

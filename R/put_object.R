@@ -130,7 +130,19 @@ function(file,
                                                            file.size(file), length(file))
                       )), 
                     request_body = file,
-                    ...)
+                    write_disk = NULL,
+                    accelerate = FALSE,
+                    dualstack = FALSE,
+                    parse_response = TRUE, 
+                    check_region = FALSE,
+                    url_style = c("path", "virtual"),
+                    base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                    verbose = getOption("verbose", FALSE),
+                    region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                    key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                    secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                    session_token = NULL,
+                    use_https = FALSE)
         return(TRUE)
     }
 }
@@ -161,7 +173,19 @@ post_object <- function(file, object, bucket, headers = list(), ...) {
                                                        file.size(file), length(file))
                   )), 
                 request_body = file,
-                ...)
+                write_disk = NULL,
+                accelerate = FALSE,
+                dualstack = FALSE,
+                parse_response = TRUE, 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = FALSE)
     structure(r, class = "s3_object")
 }
 

@@ -2,6 +2,7 @@
 #' @title Notifications
 #' @description Get/put the notification configuration for a bucket.
 #'
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template bucket
 #' @param request_body A character string containing an XML request body, as defined in the specification in the \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTnotification.html}{API Documentation}.
 #' @template dots
@@ -11,7 +12,7 @@
 #' \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETnotification.html}{API Documentation: GET}
 #' \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTnotification.html}{API Documentation: PUT}
 #' @export
-get_notification <- function(bucket, ...){
+get_notification <- function(bucket, use_https  = FALSE, ...){
     r <- s3HTTP(verb = "GET", 
                 bucket = bucket,
                 query = list(notification = ""),
@@ -34,8 +35,9 @@ get_notification <- function(bucket, ...){
 }
 
 #' @rdname notifications
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @export
-put_notification <- function(bucket, request_body, ...){
+put_notification <- function(bucket, request_body, use_https= FALSE,...){
     r <- s3HTTP(verb = "PUT", 
                 bucket = bucket,
                 query = list(notification = ""),

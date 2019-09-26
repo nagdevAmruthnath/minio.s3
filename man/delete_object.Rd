@@ -4,7 +4,7 @@
 \alias{delete_object}
 \title{Delete object}
 \usage{
-delete_object(object, bucket, quiet = TRUE, ...)
+delete_object(object, bucket, quiet = TRUE, use_https = FALSE, ...)
 }
 \arguments{
 \item{object}{Character string with the object key, or an object of class \dQuote{s3_object}. In most cases, if \code{object} is specified as the latter, \code{bucket} can be omitted because the bucket name will be extracted from \dQuote{Bucket} slot in \code{object}.}
@@ -12,6 +12,8 @@ delete_object(object, bucket, quiet = TRUE, ...)
 \item{bucket}{Character string with the name of the bucket, or an object of class \dQuote{s3_bucket}.}
 
 \item{quiet}{A logical indicating whether (when \code{object} is a list of multiple objects), to run the operation in \dQuote{quiet} mode. Ignored otherwise. See API documentation for details.}
+
+\item{use_https}{True if connection is HTTPS and False if connection is HTTP}
 
 \item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
 }

@@ -6,10 +6,10 @@
 \title{List bucket contents}
 \usage{
 get_bucket(bucket, prefix = NULL, delimiter = NULL, max = NULL,
-  marker = NULL, parse_response = TRUE, ...)
+  marker = NULL, parse_response = TRUE, use_https, ...)
 
 get_bucket_df(bucket, prefix = NULL, delimiter = NULL, max = NULL,
-  marker = NULL, ...)
+  marker = NULL, use_https, ...)
 }
 \arguments{
 \item{bucket}{Character string with the name of the bucket, or an object of class \dQuote{s3_bucket}.}
@@ -24,7 +24,10 @@ get_bucket_df(bucket, prefix = NULL, delimiter = NULL, max = NULL,
 
 \item{parse_response}{logical, should we attempt to parse the response?}
 
+\item{use_https}{True if connection is HTTPS and False if connection is HTTP}
+
 \item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
+
 }
 \value{
 \code{get_bucket} returns a list of objects in the bucket (with class \dQuote{s3_bucket}), while \code{get_bucket_df} returns a data frame (the only difference is the application of the \code{as.data.frame()} method to the list of bucket contents. If \code{max} is greater than 1000, multiple API requests are executed and the attributes attached to the response object reflect only the final request.

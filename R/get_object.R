@@ -4,8 +4,8 @@
 #' @template object
 #' @template bucket
 #' @param file An R connection, or file name specifying the local file to save the object into.
-#' @param headers List of request headers for the REST call.
 #' @param parse_response Passed through to \code{\link{s3HTTP}}, as this function requires a non-default setting. There is probably no reason to ever change this.
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #' @details \code{get_object} retrieves an object into memory as a raw vector. \code{save_object} saves an object to a local file. \code{head_object} checks whether an object exists by executing an HTTP HEAD request; this can be useful for checking object headers such as \dQuote{content-length} or \dQuote{content-type}.
 #'
@@ -75,6 +75,7 @@ function(object,
 
 #' @rdname getobject
 #' @param overwrite A logical indicating whether to overwrite \code{file}. Passed to \code{\link[httr]{write_disk}}. Default is \code{TRUE}.
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @export
 save_object <- 
 function(object, 
@@ -101,7 +102,6 @@ function(object,
                 write_disk = httr::write_disk(path = file, overwrite = overwrite),
                 headers = list(), 
                 request_body = "",
-                write_disk = NULL,
                 accelerate = FALSE,
                 dualstack = FALSE,
                 parse_response = TRUE, 
@@ -150,6 +150,7 @@ head_object <- function(object, bucket, use_https, ...) {
 #' 
 #' @template object
 #' @template bucket
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #'
 #' @return Something.

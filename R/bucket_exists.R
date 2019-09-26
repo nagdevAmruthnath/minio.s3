@@ -2,7 +2,8 @@
 #' @description Check whether a bucket exists and is accessible with the current authentication keys.
 #' @template bucket
 #' @template dots
-#'
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
+#' 
 #' @return \code{TRUE} if bucket exists and is accessible, else \code{FALSE}.
 #' @references \href{http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketHEAD.html}{API Documentation}
 #' @export

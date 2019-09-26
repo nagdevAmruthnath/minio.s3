@@ -4,10 +4,12 @@
 \alias{get_location}
 \title{Bucket location}
 \usage{
-get_location(bucket, ...)
+get_location(bucket, use_https, ...)
 }
 \arguments{
 \item{bucket}{Character string with the name of the bucket, or an object of class \dQuote{s3_bucket}.}
+
+\item{use_https}{True if connection is HTTPS and False if connection is HTTP}
 
 \item{\dots}{Additional arguments passed to \code{\link{s3HTTP}}.}
 }

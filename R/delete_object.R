@@ -4,6 +4,7 @@
 #' @template object
 #' @template bucket
 #' @param quiet A logical indicating whether (when \code{object} is a list of multiple objects), to run the operation in \dQuote{quiet} mode. Ignored otherwise. See API documentation for details.
+#' @param use_https True if connection is HTTPS and False if connection is HTTP
 #' @template dots
 #' @details \code{object} can be a single object key, an object of class \dQuote{s3_object}, or a list of either.
 #'
@@ -14,7 +15,7 @@
 #' @importFrom base64enc base64encode
 #' @importFrom xml2 read_xml write_xml xml_add_child
 #' @export
-delete_object <- function(object, bucket, quiet = TRUE, use_https, ...) {
+delete_object <- function(object, bucket, quiet = TRUE, use_https = FALSE, ...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
     }
@@ -55,9 +56,6 @@ delete_object <- function(object, bucket, quiet = TRUE, use_https, ...) {
                     request_body = tmpfile,
                     headers = list(`Content-Length` = file.size(tmpfile), 
                                    `Content-MD5` = md), 
-                    query = NULL,
-                    headers = list(), 
-                    request_body = "",
                     write_disk = NULL,
                     accelerate = FALSE,
                     dualstack = FALSE,
