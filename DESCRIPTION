@@ -1,6 +1,6 @@
-Package: aws.s3
+Package: minio.s3
 Type: Package
-Title: AWS S3 Client Package
+Title: MinIO S3 Client Package
 Version: 0.3.8
 Date: 2017-08-19
 Authors@R: c(person("Thomas J.", "Leeper", role = c("aut", "cre"),
@@ -11,9 +11,9 @@ Authors@R: c(person("Thomas J.", "Leeper", role = c("aut", "cre"),
              person("Tyler", "Hunt", role = "ctb"),
              person("Steven", "Akins", role = "ctb"),
              person("Bao", "Nguyen", role = "ctb"),
-             person("Thierry", "Onkelinx", role = "ctb"))
-Description: A simple client package for the Amazon Web Services ('AWS') Simple
-    Storage Service ('S3') 'REST' 'API' <https://aws.amazon.com/s3/>.
+             person("Thierry", "Onkelinx", role = "ctb"),
+             person("Nagdev", "Amruthnath", role = "ctb"))
+Description: A simple client package for the MinIO S3 storage. This is a modified version of aws.S3 Package. 
 License: GPL (>= 2)
 URL: https://github.com/cloudyr/aws.s3
 BugReports: https://github.com/cloudyr/aws.s3/issues

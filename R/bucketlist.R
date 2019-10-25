@@ -14,7 +14,16 @@
 #' @seealso \code{\link{get_bucket}}, \code{\link{get_object}}
 #' @export
 bucketlist <- function(add_region = FALSE, ...) {
-    r <- s3HTTP(verb = "GET", ...)
+    r <- s3HTTP(verb = "GET", 
+                check_region = FALSE,
+                url_style = c("path", "virtual"),
+                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                verbose = getOption("verbose", FALSE),
+                region = Sys.getenv("AWS_DEFAULT_REGION"), 
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                session_token = NULL,
+                use_https = FALSE, ...)
     out <- do.call("rbind.data.frame", r[["Buckets"]])
     out[] <- lapply(out, as.character)
     names(out)[names(out) %in% "Name"] <- "Bucket"
