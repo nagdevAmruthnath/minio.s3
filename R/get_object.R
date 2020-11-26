@@ -83,6 +83,10 @@ function(object,
          file = basename(object),
          overwrite = TRUE,
          use_https,
+         base_url,
+         region,
+         key,
+         secret,
          ...) {
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
