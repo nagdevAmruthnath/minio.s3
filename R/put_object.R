@@ -68,6 +68,26 @@ function(file,
         }
         object <- get_objectkey(object)
     }
+         
+    if (missing(base_url)) {
+        base_url = Sys.getenv("AWS_S3_ENDPOINT")
+    } 
+
+
+    if (missing(region)) {
+        region = Sys.getenv("AWS_DEFAULT_REGION")
+    } 
+
+    if (missing(key)) {
+        key = Sys.getenv("AWS_ACCESS_KEY_ID")
+    } 
+
+    if (missing(secret)) {
+        secret = Sys.getenv("AWS_SECRET_ACCESS_KEY")
+    }      
+         
+         
+         
     acl <- match.arg(acl)
     headers <- c(list(`x-amz-acl` = acl), headers)
     if (isTRUE(multipart)) {
@@ -136,11 +156,11 @@ function(file,
                     parse_response = TRUE, 
                     check_region = FALSE,
                     url_style = c("path", "virtual"),
-                    base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                    base_url = base_url,
                     verbose = getOption("verbose", FALSE),
-                    region = Sys.getenv("AWS_DEFAULT_REGION"), 
-                    key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
-                    secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                    region = region, 
+                    key = key, 
+                    secret = secret, 
                     session_token = NULL,
                     use_https = FALSE)
         return(TRUE)
@@ -179,11 +199,11 @@ post_object <- function(file, object, bucket, headers = list(), ...) {
                 parse_response = TRUE, 
                 check_region = FALSE,
                 url_style = c("path", "virtual"),
-                base_url = Sys.getenv("AWS_S3_ENDPOINT"),
+                base_url = base_url,
                 verbose = getOption("verbose", FALSE),
-                region = Sys.getenv("AWS_DEFAULT_REGION"), 
-                key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
-                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
+                region = region, 
+                key = key, 
+                secret = secret, 
                 session_token = NULL,
                 use_https = FALSE)
     structure(r, class = "s3_object")
