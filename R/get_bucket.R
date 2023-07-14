@@ -61,7 +61,7 @@ get_bucket <- function(bucket,
                 key = Sys.getenv("AWS_ACCESS_KEY_ID"), 
                 secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"), 
                 session_token = NULL,
-                use_https = FALSE) 
+                use_https = use_https) 
 
     if (isTRUE(parse_response)) {
         while (
