@@ -63,6 +63,7 @@ function(file,
                  "aws-exec-read", "authenticated-read", 
                  "bucket-owner-read", "bucket-owner-full-control"),
          headers = list(), 
+         use_https = FALSE,
          ...) {
     if (missing(object) && is.character(file)) {
         object <- basename(file)
