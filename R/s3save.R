@@ -30,7 +30,7 @@
 #' }
 #' @seealso \code{\link{s3saveRDS}},\code{\link{s3readRDS}}
 #' @export
-s3save <- function(..., object, bucket, envir = parent.frame(), opts = NULL) {
+s3save <- function(..., object, bucket, envir = parent.frame(), opts = NULL,...) {
     tmp <- tempfile(fileext = ".rdata")
     on.exit(unlink(tmp))
     save(..., file = tmp, envir = envir)
