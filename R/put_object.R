@@ -166,7 +166,7 @@ function(file,
                     key = key, 
                     secret = secret, 
                     session_token = NULL,
-                    use_https = FALSE)
+                    use_https = use_https)
         return(TRUE)
     }
 }
@@ -209,7 +209,7 @@ post_object <- function(file, object, bucket, headers = list(), ...) {
                 key = key, 
                 secret = secret, 
                 session_token = NULL,
-                use_https = FALSE)
+                use_https = use_https)
     structure(r, class = "s3_object")
 }
 
