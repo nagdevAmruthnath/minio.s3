@@ -55,10 +55,15 @@ function(file,
          object, 
          bucket, 
          multipart = FALSE, 
+         base_url,
+         region,
+         key,
+         secret,
          acl = c("private", "public-read", "public-read-write", 
                  "aws-exec-read", "authenticated-read", 
                  "bucket-owner-read", "bucket-owner-full-control"),
          headers = list(), 
+         use_https = FALSE,
          ...) {
     if (missing(object) && is.character(file)) {
         object <- basename(file)
@@ -162,7 +167,7 @@ function(file,
                     key = key, 
                     secret = secret, 
                     session_token = NULL,
-                    use_https = FALSE)
+                    use_https = use_https)
         return(TRUE)
     }
 }
@@ -205,7 +210,7 @@ post_object <- function(file, object, bucket, headers = list(), ...) {
                 key = key, 
                 secret = secret, 
                 session_token = NULL,
-                use_https = FALSE)
+                use_https = use_https)
     structure(r, class = "s3_object")
 }
 

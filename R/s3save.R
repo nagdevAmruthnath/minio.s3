@@ -4,7 +4,7 @@
 #' @param ... For \code{s3save}, one or more R objects to be saved via \code{\link[base]{save}} and uploaded to S3. For \code{s3load}, see \code{opts}.
 #' @template bucket
 #' @param object For \code{s3save}, a character string of the name of the object you want to save to. For \code{s3load}, a character string of the name of the object you want to load from S3.
-#' @param opts Additional arguments passed to \code{\link{s3HTTP}}.
+#' @param opts Additional arguments passed to \code{\link{s3HTTP}}. Provide arguments as list, e.g. list(use_https = TRUE)
 #' @param envir For \code{s3save}, an R environment to save objects from; for \code{s3load}, the environment to load objects into. Default is the \code{parent.frame()} from which the function is called.
 #'
 #' @return For \code{s3save}, a logical, invisibly. For \code{s3load}, \code{NULL} invisibly.
@@ -33,7 +33,7 @@
 s3save <- function(..., object, bucket, envir = parent.frame(), opts = NULL) {
     tmp <- tempfile(fileext = ".rdata")
     on.exit(unlink(tmp))
-    save(..., file = tmp, envir = envir)
+    save(...,file = tmp, envir = envir)
     if (missing(bucket)) {
         bucket <- get_bucketname(object)
     }
